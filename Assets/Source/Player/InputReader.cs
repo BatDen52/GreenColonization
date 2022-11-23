@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Mover))]
 public class InputReader : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Mover _mover;
+
+    private void Awake()
     {
-        
+        _mover = GetComponent<Mover>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        if (Input.GetMouseButton(0))
+        {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+            {
+                _mover.Move(hit.point);
+            }
+        }
     }
 }

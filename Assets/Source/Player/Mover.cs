@@ -13,24 +13,26 @@ public class Mover : MonoBehaviour
     private Animator _animator;
     private CharacterController _controller;
 
-    private void Start()
+    private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _animator = gameObject.GetComponentInChildren<Animator>();
     }
 
-    private void Update()
+    public void Move(Vector3 targetPosition)
     {
+        transform.LookAt(targetPosition, Vector3.up);
+
         if (Input.GetKey("w"))
             _animator.SetInteger("AnimationPar", 1);
         else
             _animator.SetInteger("AnimationPar", 0);
 
-        _moveDirection = transform.forward * Input.GetAxis("Vertical") * _speed;
+        _moveDirection = (targetPosition - transform.position).normalized;
 
         if (_controller.isGrounded == false)
             _moveDirection.y -= _gravity;
 
-        _controller.Move(_moveDirection * Time.deltaTime);
+        _controller.Move(_moveDirection * _speed * Time.deltaTime);
     }
 }
