@@ -6,6 +6,7 @@ using UnityEngine;
 public class InputReader : MonoBehaviour
 {
     private Mover _mover;
+    private bool _isMoving;
 
     private void Awake()
     {
@@ -18,8 +19,15 @@ public class InputReader : MonoBehaviour
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
+                _isMoving = true;
                 _mover.Move(hit.point);
             }
+        }
+
+        if (_isMoving && Input.GetMouseButton(0) == false)
+        {
+            _isMoving = false;
+            _mover.Stop();
         }
     }
 }

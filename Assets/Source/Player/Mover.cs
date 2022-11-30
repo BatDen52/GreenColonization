@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,6 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _speed = 600.0f;
     [SerializeField] private float _gravity = 20.0f;
 
-    private Vector3 _moveDirection = Vector3.zero;
     private Animator _animator;
     private CharacterController _controller;
 
@@ -19,20 +19,27 @@ public class Mover : MonoBehaviour
         _animator = gameObject.GetComponentInChildren<Animator>();
     }
 
+    public void FixedUpdate()
+    {
+        if (_controller.isGrounded == false)
+        {
+            Debug.Log("isGrounded");
+            _controller.Move(Vector3.down * _gravity * Time.deltaTime);
+        }
+    }
+
     public void Move(Vector3 targetPosition)
     {
         transform.LookAt(targetPosition, Vector3.up);
 
-        if (Input.GetKey("w"))
-            _animator.SetInteger("AnimationPar", 1);
-        else
-            _animator.SetInteger("AnimationPar", 0);
+        _animator.SetInteger("AnimationPar", 1);
 
-        _moveDirection = (targetPosition - transform.position).normalized;
-
-        if (_controller.isGrounded == false)
-            _moveDirection.y -= _gravity;
-
+        Vector3 _moveDirection = (targetPosition - transform.position).normalized;
         _controller.Move(_moveDirection * _speed * Time.deltaTime);
+    }
+
+    public void Stop()
+    {
+        _animator.SetInteger("AnimationPar", 0);
     }
 }
