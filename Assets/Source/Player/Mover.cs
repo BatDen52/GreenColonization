@@ -23,7 +23,6 @@ public class Mover : MonoBehaviour
     {
         if (_controller.isGrounded == false)
         {
-            Debug.Log("isGrounded");
             _controller.Move(Vector3.down * _gravity * Time.deltaTime);
         }
     }
