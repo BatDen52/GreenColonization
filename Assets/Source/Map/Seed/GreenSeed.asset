@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12bb4e3869fd5ef41820bbf527796579, type: 3}
   m_Name: GreenSeed
   m_EditorClassIdentifier: 
-  _seedMaterial: {fileID: 0}
-  _soilMaterial: {fileID: 0}
+  _seedMaterial: {fileID: 2100000, guid: fc6027be94b4ab44da74d9b1c2f22c84, type: 2}
+  _soilMaterial: {fileID: 2100000, guid: d07038a9a3b8e9540844b1018a9d587b, type: 2}
   _fertility: 1

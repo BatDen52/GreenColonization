@@ -6,8 +6,8 @@ public class Soil : MonoBehaviour
 {
     [SerializeField] private float _needSeedCount;
     [SerializeField] private MeshRenderer _view;
-    //[SerializeField] private Grass _grass;
-    //[SerializeField] private Field _field;
+    [SerializeField] private Grass _grass;
+    [SerializeField] private Field _field;
 
     private float _seedCount;
     private SeedType _plantedSeed;
@@ -17,6 +17,9 @@ public class Soil : MonoBehaviour
 
     public void Plant(SeedType seed)
     {
+        if (seed == null)
+            return;
+
         if (_plantedSeed == null)
             _plantedSeed = seed;
 
@@ -25,11 +28,11 @@ public class Soil : MonoBehaviour
         if (IsSow)
         {
             _view.material = seed.SoilMaterial;
-           // if (_grass != null)
-           //     _grass.Active(seed);
-           //
-           // if (_field != null)
-           //     _field.Active(seed);
+            if (_grass != null)
+                _grass.Active(seed);
+
+            if (_field != null)
+                _field.Active(seed);
         }
     }
 }

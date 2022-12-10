@@ -22,7 +22,6 @@ public class InputReader : MonoBehaviour
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, _maxDistance, _movableLayer))
             {
-                Debug.Log(hit.collider.gameObject.layer);
                 _isMoving = true;
                 _mover.Move(hit.point);
             }

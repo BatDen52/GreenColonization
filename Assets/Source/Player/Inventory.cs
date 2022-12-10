@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
         _seeds.Add(seed);
     }
 
-    public bool ContinsType(SeedType seedType) => _seeds.Any(s => s.Type == seedType);
+    public bool ContinsType(SeedType seedType) => seedType != null && _seeds.Any(s => s.Type == seedType);
 
     public Seed GetSeed(SeedType seedType)
     {
