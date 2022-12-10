@@ -5,20 +5,31 @@ using UnityEngine;
 public class Soil : MonoBehaviour
 {
     [SerializeField] private float _needSeedCount;
-    [SerializeField] private Soil _replaceView;
+    [SerializeField] private MeshRenderer _view;
+    //[SerializeField] private Grass _grass;
+    //[SerializeField] private Field _field;
 
     private float _seedCount;
-    private bool _isSow = false;
+    private SeedType _plantedSeed;
 
-    public void Sow()
+    public SeedType PlantedSeed => _plantedSeed;
+    public bool IsSow => _needSeedCount == _seedCount;
+
+    public void Plant(SeedType seed)
     {
-        //заменить на состояния поля (состояние - скрипт со своим визуалом и показателями)
+        if (_plantedSeed == null)
+            _plantedSeed = seed;
 
-        if (_isSow)
-            return;
+        _seedCount += seed.Fertility;
 
-        Instantiate(_replaceView, transform.position, transform.rotation, transform.parent)._isSow = true;
-        Destroy(gameObject);
-        _isSow = true;
+        if (IsSow)
+        {
+            _view.material = seed.SoilMaterial;
+           // if (_grass != null)
+           //     _grass.Active(seed);
+           //
+           // if (_field != null)
+           //     _field.Active(seed);
+        }
     }
 }

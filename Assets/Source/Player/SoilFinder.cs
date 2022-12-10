@@ -16,7 +16,17 @@ public class SoilFinder : MonoBehaviour
     {
         if (hit.gameObject.TryGetComponent(out Soil soil))
         {
-            soil.Sow();
+            if (_inventory.IsEmpty)
+                return;
+
+            if (soil.IsSow)
+                return;
+
+            if (soil.PlantedSeed == null || _inventory.ContinsType(soil.PlantedSeed))
+            {
+                Seed seed = _inventory.GetSeed(soil.PlantedSeed);
+                soil.Plant(seed.Type);
+            }
         }
     }
 }
