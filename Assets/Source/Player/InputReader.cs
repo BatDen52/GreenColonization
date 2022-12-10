@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Mover))]
 public class InputReader : MonoBehaviour
 {
+    [SerializeField] private LayerMask _movableLayer;
+    [SerializeField] private float _maxDistance;
+
     private Mover _mover;
     private bool _isMoving;
 
@@ -17,8 +20,9 @@ public class InputReader : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, _maxDistance, _movableLayer))
             {
+                Debug.Log(hit.collider.gameObject.layer);
                 _isMoving = true;
                 _mover.Move(hit.point);
             }
