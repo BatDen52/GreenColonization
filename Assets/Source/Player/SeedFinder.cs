@@ -16,10 +16,10 @@ public class SeedFinder : MonoBehaviour
     {
         if (collider.TryGetComponent(out Seed seed))
         {
-            if(_inventory.IsFull == false)
+            if (_inventory.IsFull == false && seed.IsCollected == false)
             {
                 _inventory.Add(seed);
-                Destroy(seed.gameObject);
+                seed.Collect();
             }
         }
     }

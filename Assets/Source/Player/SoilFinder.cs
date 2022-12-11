@@ -26,6 +26,8 @@ public class SoilFinder : MonoBehaviour
             {
                 Seed seed = _inventory.GetSeed(soil.PlantedSeed);
                 soil.Plant(seed.Type);
+                seed.Move(soil.transform.position);
+                Destroy(seed.gameObject, seed.LifeTime);
             }
         }
     }

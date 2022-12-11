@@ -530,6 +530,7 @@ GameObject:
   - component: {fileID: 205133507}
   - component: {fileID: 2804238967865400550}
   - component: {fileID: 8229500355402396659}
+  - component: {fileID: 3191831031388741877}
   m_Layer: 0
   m_Name: Stylized Astronaut
   m_TagString: Untagged
@@ -653,7 +654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _center: {fileID: 8605431417477257070}
-  _capacity: 15
+  _capacity: 30
 --- !u!114 &2804238967865400550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +679,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9774b4208aa77d408ea9b0e02dfbb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3191831031388741877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144838846162811167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375b6be3aa805e7408d59427bbf2e8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startPosition: {x: 0.25, y: -0.3, z: -0.3}
+  _seedOffset: 0.25
+  _width: 3
+  _length: 2
 --- !u!1 &6144840211923714655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,7 +1108,7 @@ Transform:
   m_GameObject: {fileID: 8293559915777869242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.134, z: -0.0951}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6146819498354272993}

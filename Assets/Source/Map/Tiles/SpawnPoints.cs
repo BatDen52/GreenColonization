@@ -18,9 +18,10 @@ public class SpawnPoints : MonoBehaviour
     public void Mature(Seed seed)
     {
         _seed = seed;
+        seed.Collected += OnCollected;
     }
 
-    public void Collect()
+    public void OnCollected()
     {
         _seed = null;
     }
