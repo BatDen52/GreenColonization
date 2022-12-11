@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class Soil : MonoBehaviour
     public SeedType PlantedSeed => _plantedSeed;
     public bool IsSow => _needSeedCount == _seedCount;
 
+    public event Action Sown;
+
     public void Plant(SeedType seed)
     {
         if (seed == null)
@@ -28,11 +31,14 @@ public class Soil : MonoBehaviour
         if (IsSow)
         {
             _view.material = seed.SoilMaterial;
+            
             if (_grass != null)
                 _grass.Active(seed);
 
             if (_field != null)
                 _field.Active(seed);
+
+            Sown?.Invoke();
         }
     }
 }
