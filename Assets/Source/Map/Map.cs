@@ -9,6 +9,7 @@ public class Map : MonoBehaviour
     [SerializeField] private List<Soil> _soils;
 
     public event Action<int, int> SownCountChenged;
+    public event Action FullSow;
 
     private void OnEnable()
     {
@@ -28,6 +29,10 @@ public class Map : MonoBehaviour
 
     private void OnSown()
     {
-        SownCountChenged?.Invoke(_soils.Count(s => s.IsSow), _soils.Count);
+        int sownCount = _soils.Count(s => s.IsSow);
+        SownCountChenged?.Invoke(sownCount, _soils.Count);
+
+        if (sownCount == _soils.Count)
+            FullSow?.Invoke();
     }
 }
