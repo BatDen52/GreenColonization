@@ -8,6 +8,9 @@ public class Follower : MonoBehaviour
     [SerializeField] private Vector3 _offset;
     private Transform _camera;
 
+    public Vector3 GoalPosition => _target.position + _offset;
+    public Vector3 Target => _target.position;
+
     private void Start()
     {
         _camera = transform;
@@ -16,7 +19,7 @@ public class Follower : MonoBehaviour
 
     private void LateUpdate()
     {
-        _camera.position = _target.position + _offset;
+        _camera.position = GoalPosition;
         _camera.LookAt(_target.position);
     }
 }
