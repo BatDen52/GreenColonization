@@ -15,12 +15,18 @@ public class Seed : MonoBehaviour
     public bool IsCollected => _isCollected;
     public float LifeTime => _lifeTime;
 
+    public event Action Awaking;
     public event Action Collected;
     public event Action Planting;
 
     private void Awake()
     {
         _mover = GetComponent<SeedMover>();
+    }
+
+    private void Start()
+    {
+        Awaking?.Invoke();
     }
 
     public void Collect()

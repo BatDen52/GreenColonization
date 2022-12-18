@@ -1220,6 +1220,7 @@ GameObject:
   - component: {fileID: 6928175451453839991}
   - component: {fileID: 6928175451453839984}
   - component: {fileID: 3633236361838500655}
+  - component: {fileID: 5171225055047356908}
   m_Layer: 6
   m_Name: Field
   m_TagString: Untagged
@@ -1274,6 +1275,21 @@ MonoBehaviour:
   _view: {fileID: 6129772426906364728}
   _grass: {fileID: 3725017182443745024}
   _field: {fileID: 8381704867589731904}
+--- !u!114 &5171225055047356908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6928175451453839987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda61e812de72684cb22f078de2072be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 3694202220202773255}
+  _resizeSpeed: 5
+  _size: {x: 4.5, y: 0.5, z: 4.5}
 --- !u!1 &7132887359046520489
 GameObject:
   m_ObjectHideFlags: 0

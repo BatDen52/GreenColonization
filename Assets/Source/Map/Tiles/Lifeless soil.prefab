@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 1473837023932982832}
   - component: {fileID: 1473837023932982839}
   - component: {fileID: -4162991730086484120}
+  - component: {fileID: -3051305327898764826}
   m_Layer: 6
   m_Name: Lifeless soil
   m_TagString: Untagged
@@ -108,6 +109,21 @@ MonoBehaviour:
   _view: {fileID: 2396090514569435007}
   _grass: {fileID: 0}
   _field: {fileID: 0}
+--- !u!114 &-3051305327898764826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473837023932982836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda61e812de72684cb22f078de2072be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 5122208456824174400}
+  _resizeSpeed: 5
+  _size: {x: 1.5, y: 0.5, z: 1.5}
 --- !u!1 &8930006714856380849
 GameObject:
   m_ObjectHideFlags: 0
