@@ -16,6 +16,7 @@ public class Seed : MonoBehaviour
     public float LifeTime => _lifeTime;
 
     public event Action Collected;
+    public event Action Planting;
 
     private void Awake()
     {
@@ -26,6 +27,11 @@ public class Seed : MonoBehaviour
     {
         _isCollected = true;
         Collected?.Invoke();
+    }
+
+    public void Palant()
+    {
+        Planting?.Invoke();
     }
 
     public void Move(Vector3 targetPosition)

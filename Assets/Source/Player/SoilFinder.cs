@@ -25,7 +25,7 @@ public class SoilFinder : MonoBehaviour
             if (soil.PlantedSeed == null || _inventory.ContinsType(soil.PlantedSeed))
             {
                 Seed seed = _inventory.GetSeed(soil.PlantedSeed);
-                soil.Plant(seed.Type);
+                soil.Plant(seed);
                 seed.Move(soil.transform.position);
                 Destroy(seed.gameObject, seed.LifeTime);
             }

@@ -18,25 +18,29 @@ public class Soil : MonoBehaviour
 
     public event Action Sown;
 
-    public void Plant(SeedType seed)
+    public void Plant(Seed seed)
     {
-        if (seed == null)
+        if (seed == null || seed.Type == null)
             return;
 
-        if (_plantedSeed == null)
-            _plantedSeed = seed;
+        SeedType seedType = seed.Type;
 
-        _seedCount += seed.Fertility;
+        if (_plantedSeed == null)
+            _plantedSeed = seedType;
+
+        _seedCount += seedType.Fertility;
+
+        seed.Palant();
 
         if (IsSow)
         {
-            _view.material = seed.SoilMaterial;
+            _view.material = seedType.SoilMaterial;
             
             if (_grass != null)
-                _grass.Active(seed);
+                _grass.Active(seedType);
 
             if (_field != null)
-                _field.Active(seed);
+                _field.Active(seedType);
 
             Sown?.Invoke();
         }

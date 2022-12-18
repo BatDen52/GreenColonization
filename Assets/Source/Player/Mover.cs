@@ -5,6 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class Mover : MonoBehaviour
 {
     [SerializeField] private float _speed = 600.0f;
@@ -12,11 +13,13 @@ public class Mover : MonoBehaviour
 
     private Animator _animator;
     private CharacterController _controller;
+    private AudioSource _source;
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _animator = gameObject.GetComponentInChildren<Animator>();
+        _source = GetComponent<AudioSource>();
     }
 
     public void FixedUpdate()
@@ -33,6 +36,9 @@ public class Mover : MonoBehaviour
 
         _animator.SetInteger("AnimationPar", 1);
 
+        if (_source.isPlaying == false)
+            _source.Play();
+
         Vector3 _moveDirection = (targetPosition - transform.position).normalized;
         _controller.Move(_moveDirection * _speed * Time.deltaTime);
     }
@@ -40,5 +46,6 @@ public class Mover : MonoBehaviour
     public void Stop()
     {
         _animator.SetInteger("AnimationPar", 0);
+        _source.Stop();
     }
 }

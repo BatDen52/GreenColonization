@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameCanvas _gameCanvas;
     [SerializeField] private MenuCanvas _menuCanvas;
     [SerializeField] private InputReader _inputReader;
+    [SerializeField] private MusicPlayer _music;
 
     private void OnEnable()
     {
@@ -26,6 +27,7 @@ public class Menu : MonoBehaviour
         _menuCanvas.gameObject.SetActive(false);
         _gameCanvas.gameObject.SetActive(true);
         _camera.SetTargetPosition(_follower.GoalPosition, _follower.Target);
+        _music.PlayGameMusic();
     }
 
     private void OnGottenTarget()
