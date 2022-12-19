@@ -17,6 +17,12 @@ public class Soil : MonoBehaviour
     public bool IsSow => _needSeedCount == _seedCount;
 
     public event Action Sown;
+    public event Action<float, float> SeedGetted;
+
+    private void Start()
+    {
+        SeedGetted?.Invoke(_seedCount, _needSeedCount);
+    }
 
     public void Plant(Seed seed)
     {
@@ -29,13 +35,14 @@ public class Soil : MonoBehaviour
             _plantedSeed = seedType;
 
         _seedCount += seedType.Fertility;
-
         seed.Palant();
+
+        SeedGetted?.Invoke(_seedCount, _needSeedCount);
 
         if (IsSow)
         {
             _view.material = seedType.SoilMaterial;
-            
+
             if (_grass != null)
                 _grass.Active(seedType);
 
