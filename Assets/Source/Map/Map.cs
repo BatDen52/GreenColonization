@@ -6,10 +6,15 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    [SerializeField] private List<Soil> _soils;
+    private Soil[] _soils;
 
     public event Action<int, int> SownCountChenged;
     public event Action FullSow;
+
+    private void Awake()
+    {
+        _soils = GetComponentsInChildren<Soil>() ?? new Soil[0];
+    }
 
     private void OnEnable()
     {
@@ -30,9 +35,9 @@ public class Map : MonoBehaviour
     private void OnSown()
     {
         int sownCount = _soils.Count(s => s.IsSow);
-        SownCountChenged?.Invoke(sownCount, _soils.Count);
+        SownCountChenged?.Invoke(sownCount, _soils.Length);
 
-        if (sownCount == _soils.Count)
+        if (sownCount == _soils.Length)
             FullSow?.Invoke();
     }
 }
