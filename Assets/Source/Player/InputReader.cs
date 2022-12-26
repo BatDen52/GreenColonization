@@ -29,8 +29,13 @@ public class InputReader : MonoBehaviour
 
         if (_isMoving && Input.GetMouseButton(0) == false)
         {
-            _isMoving = false;
-            _mover.Stop();
+            Stop();
         }
+    }
+
+    public void Stop()
+    {
+        _isMoving = false;
+        _mover.Stop();
     }
 }

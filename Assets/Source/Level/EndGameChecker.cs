@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class EndGameChecker : MonoBehaviour
 {
     [SerializeField] private Map _map;
+
+    public event Action GameEnded;
 
     private void OnEnable()
     {
@@ -18,6 +21,6 @@ public class EndGameChecker : MonoBehaviour
 
     private void OnFullSow()
     {
-        Destroy(_map.gameObject);
+        GameEnded?.Invoke();
     }
 }
