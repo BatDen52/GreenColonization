@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Soil : MonoBehaviour
 {
-    [SerializeField] private float _needSeedCount;
+    [SerializeField] private int _needSeedCount;
     [SerializeField] private MeshRenderer _view;
     [SerializeField] private Grass _grass;
     [SerializeField] private Field _field;
@@ -15,6 +15,7 @@ public class Soil : MonoBehaviour
 
     public SeedType PlantedSeed => _plantedSeed;
     public bool IsSow => _needSeedCount == _seedCount;
+    public int NeedSeedCount => _needSeedCount;
 
     public event Action Sown;
     public event Action<float, float> SeedGetted;

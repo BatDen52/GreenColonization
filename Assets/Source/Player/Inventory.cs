@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     private List<Seed> _seeds = new List<Seed>();
 
     public int Capacity => _capacity;
+    public int Count => _seeds.Count;
     public bool IsFull => _seeds.Count == _capacity;
     public bool IsEmpty => _seeds.Count == 0;
 
@@ -34,8 +35,11 @@ public class Inventory : MonoBehaviour
             suitableSeed.transform.parent = null;
             _seeds.Remove(suitableSeed);
 
-            for (int i = 0; i < _seeds.Count; i++)
-                ContentChenged?.Invoke(_seeds[i], i);
+            if (_seeds.Count == 0)
+                ContentChenged?.Invoke(null, 0);
+            else
+                for (int i = 0; i < _seeds.Count; i++)
+                    ContentChenged?.Invoke(_seeds[i], i);
         }
 
         return suitableSeed;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
@@ -9,6 +10,7 @@ public class InventoryVisualizer : MonoBehaviour
     [SerializeField] private float _seedOffset;
     [SerializeField] private int _width = 3;
     [SerializeField] private int _length = 2;
+    [SerializeField] private TMP_Text _seedCount;
     private Inventory _inventory;
     private Vector3[] _itemsPosition;
 
@@ -20,12 +22,12 @@ public class InventoryVisualizer : MonoBehaviour
 
     private void OnEnable()
     {
-        _inventory.ContentChenged += OnSeedAdded;
+        _inventory.ContentChenged += OnContentChenged;
     }
 
     private void OnDisable()
     {
-        _inventory.ContentChenged -= OnSeedAdded;
+        _inventory.ContentChenged -= OnContentChenged;
     }
 
     private void CulculateIpemsPosition()
@@ -46,8 +48,9 @@ public class InventoryVisualizer : MonoBehaviour
         }
     }
 
-    private void OnSeedAdded(Seed seed, int number)
+    private void OnContentChenged(Seed seed, int number)
     {
-        seed.Move(_itemsPosition[number]);
+        seed?.Move(_itemsPosition[number]);
+        _seedCount.text = $"{_inventory.Count}/{_inventory.Capacity}";
     }
 }
