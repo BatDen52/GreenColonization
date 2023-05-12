@@ -12,6 +12,16 @@ public abstract class AudioPlayer : MonoBehaviour
         _source = GetComponent<AudioSource>();
     }
 
+    protected void OnDisable()
+    {
+        _source?.Stop();
+    }
+
+    public void StopMusic()
+    {
+        _source.Stop();
+    }
+
     protected void PlayMusic(AudioClip clip)
     {
         _source.Stop();

@@ -2078,7 +2078,7 @@ MonoBehaviour:
   - {fileID: 4947377708188567625}
   - {fileID: 8767864082755569453}
   - {fileID: 6614388800462215905}
-  _spawnDelay: 2.5
+  _spawnDelay: 1.5
 --- !u!1 &8427683779588793714
 GameObject:
   m_ObjectHideFlags: 0

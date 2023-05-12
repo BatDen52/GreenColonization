@@ -22,6 +22,7 @@ public class Menu : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         _endGameChecker = GetComponent<EndGameChecker>();
         _cameraEndPosition = _camera.transform.position - _inputReader.transform.position;
         
@@ -45,7 +46,9 @@ public class Menu : MonoBehaviour
     {
         _menuCanvas.gameObject.SetActive(false);
         _gameCanvas.gameObject.SetActive(true);
+        _camera.enabled = true;
         _camera.SetTargetPosition(_follower.GoalPosition, _follower.Target);
+        _music.StopMusic();
         _music.PlayGameMusic();
         _gameStarting?.Invoke();
     }
@@ -53,6 +56,26 @@ public class Menu : MonoBehaviour
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        _gameCanvas.gameObject.SetActive(false);
+        _menuCanvas.gameObject.SetActive(true);
+        _menuCanvas.ShowPausePanel();
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
+        _gameCanvas.gameObject.SetActive(true);
+        _menuCanvas.gameObject.SetActive(false);
     }
 
     private void OnGottenTarget()

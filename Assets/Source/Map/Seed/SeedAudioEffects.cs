@@ -23,6 +23,7 @@ public class SeedAudioEffects : AudioPlayer
 
     private void OnDisable()
     {
+        base.OnDisable();
         _seed.Collected -= PlayCollectSound;
         _seed.Planting -= PlaySowSound;
     }

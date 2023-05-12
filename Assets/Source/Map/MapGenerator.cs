@@ -21,10 +21,11 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
-        MapTile newTile = Instantiate(_startTile);
+        _startTile.transform.parent = null;
+        _startTile.transform.position = Vector3.zero;
 
         _spawnedTiles = new Dictionary<Vector3, MapTile>();
-        _spawnedTiles[newTile.transform.position] = newTile;
+        _spawnedTiles[_startTile.transform.position] = _startTile;
 
         int tileCount = Random.Range(_minTileCount, _maxTileCount);
         _maxFieldCount = (int)Mathf.Round(tileCount * _fieldPercent / 100);
@@ -33,25 +34,9 @@ public class MapGenerator : MonoBehaviour
             PlaceOneRoom();
 
         foreach (MapTile tile in _spawnedTiles.Values)
-        {
             tile.transform.parent = _map.transform;
-        }
 
         _map.gameObject.SetActive(true);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            foreach (var item in _spawnedTiles.Values)
-            {
-                DestroyImmediate(item.gameObject);
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-            Start();
     }
 
     private void PlaceOneRoom()

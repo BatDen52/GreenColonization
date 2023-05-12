@@ -29,10 +29,11 @@ public class Saver : MonoBehaviour
     private void OnGameEnded()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        int lastSceneIndex = PlayerPrefs.GetInt("LastScene", DefaultSceneIndex);
 
-        if (PlayerPrefs.GetInt("LastScene", DefaultSceneIndex) < nextSceneIndex)
+        if (lastSceneIndex < nextSceneIndex || lastSceneIndex > SceneManager.sceneCountInBuildSettings - 1)
         {
-            nextSceneIndex = Mathf.Max(nextSceneIndex, SceneManager.sceneCountInBuildSettings);
+            nextSceneIndex = Mathf.Min(nextSceneIndex, SceneManager.sceneCountInBuildSettings-1);
             PlayerPrefs.SetInt("LastScene", nextSceneIndex);
             PlayerPrefs.Save();
         }

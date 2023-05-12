@@ -16,6 +16,7 @@ public class CameraMover : MonoBehaviour
     private void Awake()
     {
         _targetPosition = transform.position;
+        enabled = false;
     }
 
     public void FixedUpdate()

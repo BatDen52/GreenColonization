@@ -17,16 +17,16 @@ public class AdShower : MonoBehaviour
 
     private void Start()
     {
-        _yandexSdk.ShowVideo();
+        _yandexSdk.ShowInterstitial();
     }
 
     private void OnEnable()
     {
-        _endGameChecker.GameEnded += _yandexSdk.ShowVideo;
+        _endGameChecker.GameEnded += _yandexSdk.ShowInterstitial;
     }
 
     private void OnDisable()
     {
-        _endGameChecker.GameEnded -= _yandexSdk.ShowVideo;
+        _endGameChecker.GameEnded -= _yandexSdk.ShowInterstitial;
     }
 }
